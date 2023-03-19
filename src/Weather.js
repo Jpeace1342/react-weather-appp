@@ -1,8 +1,22 @@
-import React from "react";
+import React, { useState } from 'react';
+import axios from "axios";
 import "./Weather.css";
 
 
 export default function Weather() {
+  const [ready, setReady] = useState(false);
+  const [weatherData, setWeatherData] = useState({});
+  function handleResponse(response) {
+    console.log(response.data);
+    setWeatherData({
+      temperature: response.data.main.temp,
+      wind: 12,
+      city: response.data.name
+    });
+
+    setReady(true);
+  }
+  if (ready) {
   return(
     <div className="Weather">
       <form>
@@ -21,10 +35,10 @@ export default function Weather() {
         </div>
       </form>
       
-      <h1>New York</h1>
+      <h1>{weatherData.city}</h1>
       <ul>
         <li>Wednesday 07:00</li>
-        <li>Mostly Cloudy</li>
+        <li>{weatherData.description}</li>
       </ul>
 
       <div className="row mt-3">
@@ -32,7 +46,7 @@ export default function Weather() {
           <div className="clearfix">
          
            <div className="float-left">
-          <span className="temperature">6</span>
+          <span className="temperature">{Math.round (weatherData.temperature)}</span>
           <span className="unit">°C</span>
 
           <img className="float-left"
@@ -45,16 +59,20 @@ export default function Weather() {
             <ul>
               <li>Precipitation: 15%</li>
               <li>Humidity: 72%</li>
-              <li>Wind: 13 Km/h</li>
+              <li>Wind:{weatherData.wind} Km/h</li>
             </ul>
             
         </div>
       </div>
-
-    
-    
-    
-    
     </div>
   );
+} else {
+ const apikey = "42ba0b3b90cb71o34dfbt8899738ed50";
+  let city = "New York";
+  let apiURL = `https://api.shecodes.io/weather/v1/current?query=${city}&appid=${apikey}&units=metric`;
+  axios.get(apiURL).then(handleResponse);
+
+  return "Loading...";
 }
+}
+ 
