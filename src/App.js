@@ -16,7 +16,9 @@ export default function App() {
       and is{" "}
       <a href="https://github.com/Jpeace1342/react-weather-appp"rel="noreferrer"target="_blank">
     open sourced on GitHub
-    </a>
+    </a>{" "}
+    and{" "}
+    
     </footer>
     </div>
     </div>
