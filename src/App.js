@@ -18,6 +18,7 @@ export default function App() {
     open sourced on GitHub
     </a>{" "}
     and{" "}
+    <a href="https://app.netlify.com/sites/animated-torrone-3195ac/overview" target="_blank" rel="noopener noreferrer"> hosted on Netlify</a>
     
     </footer>
     </div>
